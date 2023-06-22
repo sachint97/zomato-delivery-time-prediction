@@ -34,9 +34,9 @@ class Modeltrainer:
 
             hyp_par= {
                 'max_depth': 10,
-                'min_samples_leaf': 1,
-                'min_samples_split': 22,
-                'n_estimators': 90
+                'min_samples_leaf': 5,
+                'min_samples_split': 8,
+                'n_estimators': 20
                 }
             
 
