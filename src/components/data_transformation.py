@@ -135,8 +135,8 @@ class DataTransformation:
         logging.info('Data transformation initiated.')
         try:
             # reading train and test data
-            train_df = pd.read_csv(train_path)
-            test_df = pd.read_csv(test_path)
+            train_df = pd.read_csv(train_path,parse_dates=["Order_Date"],dayfirst=True)
+            test_df = pd.read_csv(test_path,parse_dates=["Order_Date"],dayfirst=True)
 
 
             logging.info('Read train and test data complete')
@@ -166,7 +166,7 @@ class DataTransformation:
 
             logging.info('Obtaining preprocessing objects')
 
-            preprocessor = self.get_data_transformation_obj()
+            preprocessor = self.get_transformation_obj()
 
 
             input_train_df = train_df.drop(columns=target_col,axis=1)
@@ -190,7 +190,8 @@ class DataTransformation:
                 )
             
             logging.info('Data transformation completed')
-
+            logging.info(f'Train Dataframe Head : \n{train_array[:5,:]}')
+            logging.info(f'Test Dataframe Head : \n{test_array[:5,:]}')
             return (train_array,test_array,self.data_transformation_config.preprocessor_obj_path)
 
         except Exception as e:

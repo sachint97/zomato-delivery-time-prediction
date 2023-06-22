@@ -22,7 +22,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Data ingestion methods started.')
         try:
-            df = pd.read_csv(os.path.join('notebooks','data','finalTrain.csv'))
+            df = pd.read_csv(os.path.join('notebooks','data','finalTrain.csv'),parse_dates=["Order_Date"],dayfirst=True)
 
             logging.info('Dataset read as pandas dataframe')
 
@@ -31,12 +31,12 @@ class DataIngestion:
 
             logging.info('Train test split started')
 
-            train_set, test_set = train_test_split(df, test_state=0.3, random_state=42)
+            train_set, test_set = train_test_split(df, test_size=0.3, random_state=42)
 
             logging.info('Train test split completed, starting to export train data and test data.')
 
             train_set.to_csv(self.ingestion_config.train_data_path, index = False, header = True)
-            test_set.to_csv(self.ingestion_config.train_data_path, index = False, header = True)
+            test_set.to_csv(self.ingestion_config.test_data_path, index = False, header = True)
 
             logging.info('Ingestion of data is completed.')
 

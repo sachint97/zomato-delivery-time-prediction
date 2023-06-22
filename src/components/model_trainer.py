@@ -2,7 +2,7 @@ import sys
 import os
 import pandas as pd
 import numpy as np
-import dataclasses as dataclass
+from dataclasses import dataclass
 
 
 from src.exception import CustomException
@@ -34,7 +34,6 @@ class Modeltrainer:
 
             hyp_par= {
                 'max_depth': 10,
-                'max_features': 'auto',
                 'min_samples_leaf': 1,
                 'min_samples_split': 22,
                 'n_estimators': 90
