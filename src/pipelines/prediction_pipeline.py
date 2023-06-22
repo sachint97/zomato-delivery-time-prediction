@@ -4,19 +4,27 @@ import os
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import load_object
+from src.components.data_transformation import DataTransformation
 
 import pandas as pd
 
 class PredictPipeline:
     def predict(self,features):
         try: 
+            logging.info("Starting prediction")
             preprocessor_path = os.path.join('artifacts','preprocessor.pkl')
             model_path = os.path.join('artifacts','model.pkl')
 
+            logging.info("loading preprocessor and model")
             preprocessor = load_object(preprocessor_path)
             model = load_object(model_path)
-
-            data_scaled = preprocessor.transform(features)
+            d_t = DataTransformation()
+            sample = d_t.get_distance(features)
+            sample = d_t.handle_date_feature(sample)
+            sample = d_t.handle_time_feature(sample)
+            logging.info("transforming data")
+            data_scaled = preprocessor.transform(sample)
+            logging.info("predicting value")
             pred = model.predict(data_scaled)
 
             return pred
@@ -66,23 +74,23 @@ class CustomData:
     def get_data(self):
         try:
             data = {
-                "Delivery_person_Age": [self.Delivery_person_Age],
-                "Delivery_person_Ratings": [self.Delivery_person_Ratings],
-                "Restaurant_latitude": [self.Restaurant_latitude],
-                "Restaurant_longitude": [self.Restaurant_longitude],
-                "Delivery_location_latitude": [self.Delivery_location_latitude],
-                "Delivery_location_longitude": [self.Delivery_location_longitude],
-                "Order_Date": [self.Order_Date],
-                "Time_Orderd": [self.Time_Orderd],
-                "Time_Order_picked": [self.Time_Order_picked],
-                "Weather_conditions": [self.Weather_conditions],
-                "Road_traffic_density": [self.Road_traffic_density],
-                "Vehicle_condition": [self.Vehicle_condition],
-                "Type_of_order": [self.Type_of_order],
-                "Type_of_vehicle": [self.Type_of_vehicle],
-                "multiple_deliveries": [self.multiple_deliveries],
-                "Festival": [self.Festival],
-                "City": [self.City]
+                "Delivery_person_Age": self.Delivery_person_Age,
+                "Delivery_person_Ratings": self.Delivery_person_Ratings,
+                "Restaurant_latitude": self.Restaurant_latitude,
+                "Restaurant_longitude": self.Restaurant_longitude,
+                "Delivery_location_latitude": self.Delivery_location_latitude,
+                "Delivery_location_longitude": self.Delivery_location_longitude,
+                "Order_Date": self.Order_Date,
+                "Time_Orderd": self.Time_Orderd,
+                "Time_Order_picked": self.Time_Order_picked,
+                "Weather_conditions": self.Weather_conditions,
+                "Road_traffic_density": self.Road_traffic_density,
+                "Vehicle_condition": self.Vehicle_condition,
+                "Type_of_order": self.Type_of_order,
+                "Type_of_vehicle": self.Type_of_vehicle,
+                "multiple_deliveries": self.multiple_deliveries,
+                "Festival": self.Festival,
+                "City": self.City
                 }
             df = pd.DataFrame(data)
             logging.info('Dataframe Gathered')

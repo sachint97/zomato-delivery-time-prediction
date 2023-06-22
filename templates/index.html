@@ -1,0 +1,99 @@
+<html>
+<body>
+<form action="{{url_for('predict_datapoint')}}" method="POST">
+    <h2>Delivery Information</h2>
+
+    <label for="age">Delivery Person Age:</label>
+    <input type="number" id="age" step="any" name="delivery_person_age"><br><br>
+
+    <label for="ratings">Delivery Person Ratings:</label>
+    <input type="number" id="ratings" step="any" name="delivery_person_ratings"><br><br>
+
+    <label for="rest_lat">Restaurant Latitude:</label>
+    <input type="number" id="rest_lat" step="any" name="restaurant_latitude"><br><br>
+
+    <label for="rest_long">Restaurant Longitude:</label>
+    <input type="number" id="rest_long" step="any" name="restaurant_longitude"><br><br>
+
+    <label for="delivery_lat">Delivery Location Latitude:</label>
+    <input type="number" id="delivery_lat" step="any" name="delivery_location_latitude"><br><br>
+
+    <label for="delivery_long">Delivery Location Longitude:</label>
+    <input type="number" id="delivery_long" step="any" name="delivery_location_longitude"><br><br>
+
+    <label for="order_date">Order Date:</label>
+    <input type="date" id="order_date" name="order_date" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"><br><br>
+
+    <label for="time_ordered">Time Ordered (hh:mm):</label>
+    <input type="time" id="time_ordered" name="time_ordered" pattern="[0-9]{2}:[0-9]{2}"><br><br>
+
+    <label for="time_picked">Time Order Picked (hh:mm):</label>
+    <input type="time" id="time_picked" name="time_picked" pattern="[0-9]{2}:[0-9]{2}"><br><br>
+
+    <label for="weather">Weather Conditions:</label>
+    <select id="weather" name="weather_conditions">
+        <option value="Fog">Fog</option>
+        <option value="Stormy">Stormy</option>
+        <option value="Sandstorms">Sandstorms</option>
+        <option value="Windy">Windy</option>
+        <option value="Cloudy">Cloudy</option>
+        <option value="Sunny">Sunny</option>
+    </select><br><br>
+
+    <label for="traffic">Road Traffic Density:</label>
+    <select id="traffic" name="road_traffic_density">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Jam">Jam</option>
+    </select><br><br>
+
+    <label for="vehicle_condition">Vehicle Condition:</label>
+    <select id="vehicle_condition" name="vehicle_condition">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select><br><br>
+
+    <label for="order_type">Type of Order:</label>
+    <select id="order_type" name="type_of_order">
+        <option value="Snack">Snack</option>
+        <option value="Meal">Meal</option>
+        <option value="Drink">Drink</option>
+        <option value="Buffet">Buffet</option>
+    </select><br><br>
+
+    <label for="vehicle_type">Type of Vehicle:</label>
+    <select id="vehicle_type" name="type_of_vehicle">
+        <option value="motorcycle">Motorcycle</option>
+        <option value="scooter">Scooter</option>
+        <option value="bicycle">Bicycle</option>
+        <option value="electric_scooter">Electric Scooter</option>
+    </select><br><br>
+
+    <label for="deliveries">Multiple Deliveries:</label>
+    <select id="deliveries" name="multiple_deliveries">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="0">None</option>
+    </select><br><br>
+
+    <label for="festival">Festival:</label>
+    <input type="radio" id="festival_yes" name="festival" value="Yes">
+    <label for="festival_yes">Yes</label>
+    <input type="radio" id="festival_no" name="festival" value="No">
+    <label for="festival_no">No</label><br><br>
+
+    <label for="city">City:</label>
+    <select id="city" name="City">
+        <option value="Metropolitian">Metropolitian</option>
+        <option value="Urban">Urban</option>
+        <option value="Semi-Urban">Semi-Urban</option>
+    </select><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
